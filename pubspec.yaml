@@ -1,8 +1,8 @@
-name: datetime
+name: now
 description: >-
   A minimalist DateTime extension for validating, parsing, manipulating and formatting times.
 version: 0.0.0
-repository: https://github.com/odroe/datetime
+repository: https://github.com/odroe/now
 
 environment:
   sdk: ">=2.19.2 <3.0.0"

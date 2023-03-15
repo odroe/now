@@ -1,4 +1,4 @@
-import 'package:datetime/datetime.dart';
+import 'package:now/now.dart';
 import 'package:test/test.dart';
 
 void main() {

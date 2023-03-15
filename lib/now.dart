@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library datetime;
+library odroe.now;
 
 export 'src/datetime_base.dart';
 
