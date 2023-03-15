@@ -1,0 +1,15 @@
+name: datetime
+description: >-
+  A minimalist DateTime extension for validating, parsing, manipulating and formatting times.
+version: 0.0.0
+repository: https://github.com/odroe/datetime
+
+environment:
+  sdk: ">=2.19.2 <3.0.0"
+
+# dependencies:
+#   path: ^1.8.0
+
+dev_dependencies:
+  lints: ^2.0.0
+  test: ^1.21.0
