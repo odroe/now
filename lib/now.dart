@@ -2,4 +2,5 @@
 /// and formatting times.
 library odroe.now;
 
-export 'src/extension_operator_on_datetime.dart';
+export 'src/duration.dart';
+export 'src/datetime.dart';
