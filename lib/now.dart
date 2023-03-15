@@ -4,3 +4,4 @@ library odroe.now;
 
 export 'src/duration.dart';
 export 'src/datetime.dart';
+export 'src/now.dart';

@@ -1,3 +1,5 @@
+import 'formatter/tokenizer.dart';
+
 /// [DateTime] extension for adding, subtracting.
 ///
 /// ## Add
@@ -82,4 +84,16 @@ extension DateTimeCompare on DateTime {
 extension DateTimeUtc on DateTime {
   /// Always return a UTC [DateTime].
   DateTime get utc => isUtc ? this : toUtc();
+}
+
+/// [DateTime] extension for formatting.
+///
+/// ## Format
+/// ```dart
+/// print(DateTime.now().format('yyyy-MM-dd')); // 2021-01-01
+/// ```
+extension DateTimeFormat on DateTime {
+  /// Format [DateTime] with the given [pattern].
+  String format(String pattern) =>
+      DateTimePatternTokenizer.parse(pattern).format(this);
 }
