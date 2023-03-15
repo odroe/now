@@ -32,7 +32,7 @@ extension IntConvertDuration on int {
       Duration(microseconds: this * DurationWeeks.microsecondsPerWeek);
 }
 
-/// Extension on [Duration] to add methods to enter weeks.
+/// Extension on [Duration] to add methods to enters weeks.
 extension DurationWeeks on Duration {
   /// The number of day per week.
   static const int daysPerWeek = 7;
