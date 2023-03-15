@@ -1,8 +1,5 @@
-/// Support for doing something awesome.
-///
-/// More dartdocs go here.
+/// A minimalist DateTime extension for validating, parsing, manipulating
+/// and formatting times.
 library odroe.now;
 
-export 'src/datetime_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/extension_operator_on_datetime.dart';
