@@ -7,6 +7,9 @@ abstract class DateTimePatternToken {
   /// Format the given [date] and return the formatted string.
   String format(DateTime date);
 
+  /// Returns a string representation of this object.
+  String get value;
+
   /// Create a new [DateTimePatternToken] instance from the given [String]
   const factory DateTimePatternToken.string(String value) =
       _StringDateTimePatternToken;
@@ -22,6 +25,7 @@ abstract class DateTimePatternToken {
 /// String token.
 class _StringDateTimePatternToken implements DateTimePatternToken {
   /// String value.
+  @override
   final String value;
 
   /// Creates a new [_StringDateTimePatternToken] instance.
@@ -46,7 +50,10 @@ class _DateTimeFormatterDateTimePatternToken implements DateTimePatternToken {
   String format(DateTime date) => formatter.format(date);
 
   @override
-  String toString() => 'formatter(${formatter.specifier})';
+  String toString() => 'formatter($value)';
+
+  @override
+  String get value => formatter.specifier;
 }
 
 /// Remove token.
@@ -55,8 +62,11 @@ class _RemoveDateTimePatternToken implements DateTimePatternToken {
   const _RemoveDateTimePatternToken();
 
   @override
-  String format(DateTime date) => '';
+  String format(DateTime date) => value;
 
   @override
-  String toString() => '';
+  String toString() => value;
+
+  @override
+  String get value => '';
 }

@@ -50,6 +50,33 @@ class _TokenizerImpl implements DateTimePatternTokenizer {
             DateTimePatternToken.string(String.fromCharCode(charCode)))
         .toList();
 
+    // If the previous token is `\`, remove it previous token.
+    final size = tokens.length;
+    int offset = 0;
+    for (int index = 1; index < size; index++) {
+      final currentIndex = index - offset;
+      final current = tokens[currentIndex];
+
+      final previousIndex = currentIndex - 1;
+      final previous = tokens[currentIndex - 1];
+
+      if (previous.value == r'\') {
+        // Remove current token. reset previous token is current token.
+        tokens[previousIndex] = current;
+        tokens.removeAt(currentIndex);
+
+        // replace pattern.
+        pattern = pattern.replaceRange(
+          previousIndex,
+          currentIndex + 1,
+          now.forbiddenSpecifier,
+        );
+
+        // Increase offset.
+        offset++;
+      }
+    }
+
     bool running = formatters.isNotEmpty;
     while (running) {
       for (final formatter in formatters) {
