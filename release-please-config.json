@@ -1,0 +1,9 @@
+{
+  "$schema": "https://github.com/googleapis/release-please/raw/main/schemas/config.json",
+  "bootstrap-sha": "fcf4725321ada81d2908474d22980bc97dff4812",
+  "packages": {
+    ".": {
+      "release-type": "dart"
+    }
+  }
+}
