@@ -1,3 +1,5 @@
+import 'package:now/now.dart';
+
 import '../formatter.dart';
 
 const Iterable<DateTimeFormatter> _defaultFormatters = [
@@ -71,9 +73,13 @@ abstract class Now {
   /// Destroys all registered [DateTime] formatters.
   void destroyAll() => destroy((_) => true);
 
-  /// Constructs a [DateTime] instance with current date and time in the
+  /// Creates a [DateTime] instance with current date and time in the
   /// local time zone.
   DateTime call() => DateTime.now();
+
+  /// Creates a [DateTime] instance with current date and time in the
+  /// UTC time zone.
+  DateTime utc() => call().utc;
 
   /// Returns all registered [DateTimeFormatter]s.
   Iterable<DateTimeFormatter> get formatters;

@@ -1,4 +1,3 @@
-
 import '../formatter.dart';
 
 /// Time zone offset from UTC formatter, `±HH:mm`.
