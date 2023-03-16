@@ -1,7 +1,7 @@
 name: now
 description: >-
   A minimalist DateTime library for validating, parsing, manipulating and formatting times.
-version: 0.0.0
+version: 1.0.0
 repository: https://github.com/odroe/now
 
 environment:
