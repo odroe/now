@@ -1,5 +1,34 @@
 import '../formatter.dart';
 
+const Iterable<DateTimeFormatter> _defaultFormatters = [
+  AmpmUpperCaseFormatter(),
+  AmpmLowerCaseFormatter(),
+  DayOfMonthFormatter(),
+  DayOfMonthTwoDigitsFormatter(),
+  DayOfWeekFormatter(),
+  DayOfWeekFullFormatter(),
+  DayOfWeekShortFormatter(),
+  DayOfWeekMinFormatter(),
+  HourOfDayFormatter(),
+  HourOfDayTwoDigitsFormatter(),
+  HourOfDay12Formatter(),
+  HourOfDay12TwoDigitsFormatter(),
+  MillisecondFormatter(),
+  MinuteFormatter(),
+  MinuteTwoDigitsFormatter(),
+  MonthFormatter(),
+  MonthTwoDigitsFormatter(),
+  MonthFullFormatter(),
+  MonthAbbreviatedFormatter(),
+  QuarterFormatter(),
+  SecondFormatter(),
+  SecondTwoDigitsFormatter(),
+  TimeZoneOffsetFormatter(),
+  TimeZoneOffsetShortFormatter(),
+  FullYearFormatter(),
+  ShortYearFormatter(),
+];
+
 /// [DateTimeFormatter] exists exception.
 class DateTimeFormatterExistsException implements Exception {
   /// [DateTimeFormatter] exists exception.
@@ -19,22 +48,32 @@ abstract class Now {
 
   /// Register a [DateTimeFormatter] for current [Now] instance with
   /// the given [specifier].
-  void registerWith(String specifier, DateTimeFormatter formatter);
+  void registerWith(String specifier, DateTimeFormatter formatter) =>
+      registerWithFn(specifier, formatter.format);
 
   /// Register a [formatter] for current [Now]
   /// instance with the given [specifier].
   void registerWithFn(
-      String specifier, String Function(DateTime date) formatter);
+          String specifier, String Function(DateTime date) formatter) =>
+      register(_FunctionBasedDateTimeFormatter(specifier, formatter));
 
   /// Destroys a registered [DateTime] formatter with the given [test].
   void destroy(bool Function(DateTimeFormatter formatter) test);
 
   /// Destroys a registered [DateTime] formatter with the given [specifier].
-  void destroyWith(String specifier);
+  void destroyWith(String specifier) =>
+      destroy((formatter) => formatter.specifier == specifier);
+
+  /// Destroys all default [DateTime] formatters.
+  void destroyDefault() => destroy((formatter) =>
+      _defaultFormatters.any((f) => f.specifier == formatter.specifier));
+
+  /// Destroys all registered [DateTime] formatters.
+  void destroyAll() => destroy((_) => true);
 
   /// Constructs a [DateTime] instance with current date and time in the
   /// local time zone.
-  DateTime call();
+  DateTime call() => DateTime.now();
 
   /// Returns all registered [DateTimeFormatter]s.
   Iterable<DateTimeFormatter> get formatters;
@@ -45,35 +84,17 @@ abstract class Now {
   /// Returns default [DateTimeFormatter]s.
   Iterable<DateTimeFormatter> get defaultFormatters => _defaultFormatters;
 
-  /// Default [DateTimeFormatter]s.
-  static const Iterable<DateTimeFormatter> _defaultFormatters = [
-    AmpmUpperCaseFormatter(),
-    AmpmLowerCaseFormatter(),
-    DayOfMonthFormatter(),
-    DayOfMonthTwoDigitsFormatter(),
-    DayOfWeekFormatter(),
-    DayOfWeekFullFormatter(),
-    DayOfWeekShortFormatter(),
-    DayOfWeekMinFormatter(),
-    HourOfDayFormatter(),
-    HourOfDayTwoDigitsFormatter(),
-    HourOfDay12Formatter(),
-    HourOfDay12TwoDigitsFormatter(),
-    MillisecondFormatter(),
-    MinuteFormatter(),
-    MinuteTwoDigitsFormatter(),
-    MonthFormatter(),
-    MonthTwoDigitsFormatter(),
-    MonthFullFormatter(),
-    MonthAbbreviatedFormatter(),
-    QuarterFormatter(),
-    SecondFormatter(),
-    SecondTwoDigitsFormatter(),
-    TimeZoneOffsetFormatter(),
-    TimeZoneOffsetShortFormatter(),
-    FullYearFormatter(),
-    ShortYearFormatter(),
-  ];
+  /// Satrts a new [Stopwatch] and returns it.
+  ///
+  /// If [start] is `true` (default) the [Stopwatch] is started immediately.
+  Stopwatch stopwatch([bool start = true]) {
+    final stopwatch = Stopwatch();
+    if (start) {
+      stopwatch.start();
+    }
+
+    return stopwatch;
+  }
 }
 
 /// Creates a new [Now] instance.
@@ -83,18 +104,11 @@ final Now now = _NowImpl();
 class _NowImpl extends Now {
   /// Formatters.
   @override
-  List<DateTimeFormatter> formatters = [...Now._defaultFormatters];
-
-  @override
-  DateTime call() => DateTime.now();
+  final List<DateTimeFormatter> formatters = _defaultFormatters.toList();
 
   @override
   void destroy(bool Function(DateTimeFormatter formatter) test) =>
       formatters.removeWhere(test);
-
-  @override
-  void destroyWith(String specifier) =>
-      destroy((formatter) => formatter.specifier == specifier);
 
   @override
   void register(DateTimeFormatter formatter) {
@@ -107,16 +121,6 @@ class _NowImpl extends Now {
     }
 
     formatters.add(formatter);
-  }
-
-  @override
-  void registerWith(String specifier, DateTimeFormatter formatter) =>
-      registerWithFn(specifier, formatter.format);
-
-  @override
-  void registerWithFn(
-      String specifier, String Function(DateTime date) formatter) {
-    register(_FunctionBasedDateTimeFormatter(specifier, formatter));
   }
 }
 
