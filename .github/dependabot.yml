@@ -1,4 +1,4 @@
-updates: 2
+version: 2
 updates:
   - package-ecosystem: github-actions
     directory: /
@@ -9,4 +9,5 @@ updates:
     schedule:
       interval: daily
     commit-message:
-      prefix: "fix"
+      prefix: fix
+      prefix-development: chore
