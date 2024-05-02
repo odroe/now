@@ -5,7 +5,7 @@ version: 1.0.0
 repository: https://github.com/odroe/now
 
 environment:
-  sdk: ">=2.18.0 <3.0.0"
+  sdk: "<4.0.0"
 
 dev_dependencies:
   lints: ^3.0.0
