@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/odroe/now/compare/now-v1.0.0...now-v1.0.1) (2024-05-10)
+
+
+### Bug Fixes
+
+* bump lints from 3.0.0 to 4.0.0 ([#10](https://github.com/odroe/now/issues/10)) ([313c2f8](https://github.com/odroe/now/commit/313c2f8fe3f7e390cbbd61f69a1f363bf1774b53))
+
 ## 1.0.0 (2023-03-16)
 
 
