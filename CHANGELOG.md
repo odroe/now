@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/odroe/now/compare/now-v1.0.1...now-v1.0.2) (2024-12-12)
+
+
+### Bug Fixes
+
+* bump lints from 4.0.0 to 5.1.0 ([#14](https://github.com/odroe/now/issues/14)) ([d30d6b7](https://github.com/odroe/now/commit/d30d6b77402e4b2159132db65e73a52daf954c00))
+
 ## [1.0.1](https://github.com/odroe/now/compare/now-v1.0.0...now-v1.0.1) (2024-05-10)
 
 
