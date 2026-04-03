@@ -6,7 +6,7 @@ class MillisecondFormatter implements DateTimeFormatter {
   const MillisecondFormatter();
 
   @override
-  String format(DateTime date) => date.millisecond.toString();
+  String format(DateTime date) => date.millisecond.toString().padLeft(3, '0');
 
   @override
   String get specifier => 'SSS';
