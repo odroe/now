@@ -1,11 +1,13 @@
 # Changelog
 
-## [1.0.2](https://github.com/odroe/now/compare/now-v1.0.1...now-v1.0.2) (2024-12-12)
+## [1.0.2](https://github.com/odroe/now/compare/now-v1.0.1...now-v1.0.2) (2026-04-03)
 
 
 ### Bug Fixes
 
 * bump lints from 4.0.0 to 5.1.0 ([#14](https://github.com/odroe/now/issues/14)) ([d30d6b7](https://github.com/odroe/now/commit/d30d6b77402e4b2159132db65e73a52daf954c00))
+* bump lints from 5.1.1 to 6.1.0 ([#19](https://github.com/odroe/now/issues/19)) ([4f2a6c3](https://github.com/odroe/now/commit/4f2a6c3))
+* restore local verification baseline ([#20](https://github.com/odroe/now/issues/20)) ([c86fab2](https://github.com/odroe/now/commit/c86fab2))
 
 ## [1.0.1](https://github.com/odroe/now/compare/now-v1.0.0...now-v1.0.1) (2024-05-10)
 
